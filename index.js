@@ -27,7 +27,7 @@ const cors = require('cors')
 const app = express()
 const logger = require('./loggerMiddleware')
 
-app.use(cors)
+app.use(cors())
 app.use(express.json()) //para soportar json en los request y saber parsear a JSON
 
 app.use(logger)
@@ -60,7 +60,7 @@ app.get('/api/notes/:id', (request, response)=>{
 app.delete('/api/notes/:id', (request, response)=>{
 
     const id = Number(request.params.id)
-    notes = notes.filter(note => note.id != id)
+    notes = notes.filter(note => note.id !== id)
     response.status(204).end()
 
 })
@@ -84,7 +84,7 @@ app.post('/api/notes', (request, response)=>{
     const newNote = {
         id: maxId + 1,
         content: note.content,
-        important: typeof note.important != 'undefined' ? note.important : false,
+        important: typeof note.important !== 'undefined' ? note.important : false,
         date: new Date().toISOString
     }
 
