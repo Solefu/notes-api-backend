@@ -13,6 +13,7 @@ const handleErrors = require('./middleware/handleErrors')
 
 const usersRouter = require('./controllers/users')
 const notesRouter = require('./controllers/notes')
+const loginRouter = require('./controllers/login')
 
 app.use(cors())
 app.use(express.json()) //para soportar json en los request y saber parsear a JSON
@@ -24,6 +25,7 @@ app.get('/', (request, response)=>{
     response.send('<h1> Hello World </h1>')
 })
 
+app.use('/api/login', loginRouter)
 
 app.use('/api/users', usersRouter)
 

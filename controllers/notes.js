@@ -1,6 +1,6 @@
 
-
 const notesRouter = require('express').Router()
+const userExtractor = require('../middleware/userExtractor')
 
 const Note = require('../models/note')
 
@@ -42,9 +42,13 @@ notesRouter.get('/:id', (request, response, next) =>{
 
 })
 
-notesRouter.post('/', async(request, response, next) => {
+notesRouter.post('/', userExtractor, async(request, response, next) => {
 
     const note = request.body
+
+    const userId = request.userId
+
+    const user = await User.findById(userId)
 
     if(!note || !note.content){
 
@@ -53,8 +57,6 @@ notesRouter.post('/', async(request, response, next) => {
             error: 'required "content" field is missing'
         })
     }
-
-    const user = await User.findById(note.userId)
 
     const newNote = new Note({
         content: note.content,
