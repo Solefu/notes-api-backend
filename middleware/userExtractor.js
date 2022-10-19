@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 
 const userExtractor = (request, response, next) => {
 
-    const authorization = request.get('authorization') //bearer 89349q73947jdjkah8 "posición 7 empieza token"
+    const authorization = request.get('authorization') //posición 7 empieza token"
     let token = null
     
     if(authorization && authorization.toLowerCase().startsWith('bearer')){

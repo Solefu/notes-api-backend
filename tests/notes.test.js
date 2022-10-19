@@ -3,7 +3,7 @@ const supertest = require('supertest')
 const mongoose = require('mongoose')
 
 const {app, server} = require('../index')
-const Note = require('../models/Note')
+const Note = require('../models/note')
 
 
 const api = supertest(app)
